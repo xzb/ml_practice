@@ -47,4 +47,14 @@ public class TreeNode {
         }
         return findNodeByTag(arNode.right, arTag);
     }
+
+    public static int getNumOfNodes(TreeNode arNode)
+    {
+        if (arNode == null)
+        {
+            return 0;
+        }
+
+        return 1 + getNumOfNodes(arNode.left) + getNumOfNodes(arNode.right);
+    }
 }

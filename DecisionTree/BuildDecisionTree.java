@@ -12,8 +12,6 @@ public class BuildDecisionTree {
     private static boolean[] obAttrVisited;
     private static String[] obAttrName;
 
-    private static int obNumOfNode;
-
     private static double getEntropy(int numOfClassZero, int numOfClassOne)
     {
         if (numOfClassZero == 0 || numOfClassOne == 0)
@@ -55,7 +53,7 @@ public class BuildDecisionTree {
         obRoot = buildHelper(obDataPool.keySet());
 
         // assign Tag to DecisionTree
-        assignTag();
+        assignTag(obRoot);
 
         return obRoot;
     }
@@ -186,10 +184,10 @@ public class BuildDecisionTree {
         return rvNode;
     }
 
-    private static void assignTag()
+    public static void assignTag(TreeNode arNode)
     {
         Queue<TreeNode> loQueue = new LinkedList<>();
-        loQueue.add(obRoot);
+        loQueue.add(arNode);
         int loTag = 1;
         TreeNode tmp;
         while (!loQueue.isEmpty())
@@ -206,12 +204,6 @@ public class BuildDecisionTree {
                 loQueue.add(tmp.right);
             }
         }
-
-        obNumOfNode = loTag - 1;
-    }
-    public static int getNumOfNode()
-    {
-        return obNumOfNode;
     }
 
     public static void printTree(TreeNode arNode, int arLevel)

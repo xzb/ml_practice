@@ -14,6 +14,12 @@ public class PruneDecisionTree {
 
     public static int prune(TreeNode arNode, String[][] arDataSet, int arNumToPrune)
     {
+        // do not prune
+        if (arNumToPrune == 0)
+        {
+            return 0;
+        }
+
         obRoot = arNode;
         obDataSet = arDataSet;
         obAccuracy = TestDecisionTree.test(arNode, arDataSet);
@@ -21,7 +27,7 @@ public class PruneDecisionTree {
         System.out.println("Before Prune Accuracy: " + obAccuracy);
 
         int startIndex = 4;
-        int endIndex = BuildDecisionTree.getNumOfNode();
+        int endIndex = TreeNode.getNumOfNodes(arNode);
         List<Integer> loList = new ArrayList<>();
         for (int i = startIndex; i <= endIndex; i++)
         {
