@@ -34,7 +34,7 @@ public class DTDriver
 
     public static void main(String[] args) throws Exception
     {
-        if (args.length != 5) {
+        if (args.length < 5) {
             System.err.println("<num to prune> <training_file> <validate_file> <test_file> <1/0 print>");
             System.exit(1);
         }
@@ -44,6 +44,16 @@ public class DTDriver
         String loValidateFile = args[2];
         String loTestFile = args[3];
         boolean shouldPrint = "1".equals(args[4]);
+        boolean showBonusResult = args.length == 6 && "1".equals(args[5]);
+
+        /*
+        int numToPrune = 0;
+        String loTrainingFile = TRAINING_SET_1;
+        String loValidateFile = VALIDATION_SET_1;
+        String loTestFile = TEST_SET_1;
+        boolean shouldPrint = false;
+        boolean showBonusResult = true;
+        */
 
         // build tree
         TreeNode loTreeNode = BuildDecisionTree.build(getCSVcontent(loTrainingFile));
@@ -58,6 +68,28 @@ public class DTDriver
         if (shouldPrint)
         {
             BuildDecisionTree.printTree(loTreeNode, 0);
+        }
+
+
+        if (showBonusResult)
+        {
+            double loAveDepthOfID3Tree = TreeNode.getAverageDepth(loTreeNode);
+            int loNodesNumOfID3Tree = TreeNode.getNumOfNodes(loTreeNode);
+
+            loTreeNode = BuildRandomAttributeTree.build(getCSVcontent(loTrainingFile));
+
+            numPruned = PruneDecisionTree.prune(loTreeNode, getCSVcontent(loValidateFile), numToPrune);
+
+            accuracy = TestDecisionTree.test(loTreeNode, getCSVcontent(loTestFile));
+            System.out.println("Test Accuracy: " + accuracy);
+
+            double loAveDepthOfRandomTree = TreeNode.getAverageDepth(loTreeNode);
+            int loNodesNumOfRandomTree = TreeNode.getNumOfNodes(loTreeNode);
+
+            System.out.println("Average Depth of ID3 tree: " + loAveDepthOfID3Tree);
+            System.out.println("Num of Nodes of ID3 tree: " + loNodesNumOfID3Tree);
+            System.out.println("Average Depth of random attribute tree: " + loAveDepthOfRandomTree);
+            System.out.println("Num of Nodes of random attribute tree: " + loNodesNumOfRandomTree);
         }
     }
 }
