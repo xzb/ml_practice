@@ -1,3 +1,4 @@
+# install.packages("rpart", dependencies=TRUE)
 library(rpart)
 
 createModel <- function (trainingData)
