@@ -14,7 +14,7 @@ createModel <- function (trainingData)
 findAccuracy <- function (model, testData)
 {
   col = ncol(testData)
-  predictResult <- predict(model, testData[, 1 : col - 1])
+  predictResult <- predict(model, testData[, 1 : col - 1], type = "class")
   
   errorRate <- sum( (predictResult - testData[, col])^2 ) / nrow(testData)
   

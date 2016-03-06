@@ -5,7 +5,7 @@ DataSets <- list(
   heart = read.table(file = "data/heart-disease/processed.cleveland.data", header = FALSE, sep = ","),
   # ads = read.table(file = "data/internet_ads/ad.data", header = FALSE, sep = ",")
   arrhythmia = read.table(file = "data/arrhythmia/arrhythmia.data", header = FALSE, sep = ","),
-  autos = read.table(file = "data/autos/imports-85.data", header = FALSE, sep  = ",")
+  bridges = read.table(file = "data/bridges/bridges.data.version1", header = FALSE, sep  = ",")
   )
 
 Algorithms <- list(
@@ -87,16 +87,21 @@ exec <- function()
         
         model <- createModel(trainingData) 
         accuracy <- findAccuracy(model, testData) 
-        accuracyList <- c(accuracyList, accuracy)
+        accuracyList <- c(accuracyList, round(accuracy, digits = 3))
       }
       
-      accuracyList <- as.data.frame(accuracyList)
-      dimnames(accuracyList) <- list(unlist(Algorithms), names(DataSets[index]))
-      resultMatrix <- cbind(resultMatrix, accuracyList)
+      #accuracyList <- as.data.frame(accuracyList)
+      #dimnames(accuracyList) <- list(unlist(Algorithms), names(DataSets[index]))
+      
+      # num of total instances, num of attr, percent split, 5 accuracies
+      resultItem <- c(length(data[[1]]), length(data), "80/20", accuracyList)
+      resultMatrix <- rbind(resultMatrix, resultItem)
     }
   }
   
-  resultMatrix <- resultMatrix[, -1]
+  resultMatrix <- resultMatrix[-1, ]
 }
 
 resultMatrix <- exec()
+dimnames(resultMatrix) <- list(c("D1-1", "D1-2", "D2-1", "D2-2", "D3-1", "D3-2", "D4-1", "D4-2", "D5-1", "D5-2"),
+                               c("Num of total instances", "Num of attribute", "Percent split", unlist(Algorithms)))

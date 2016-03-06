@@ -17,7 +17,8 @@ findAccuracy <- function (model, testData)
   
   #predictResult <- predict(model, testData)
   predictResult <- compute(model, testData[, 1 : col-1])
-  errorRate <- sum( (predictResult$net.result - testData[, col])^2 ) / nrow(testData)
   
-  accuracy <- 1 - errorRate
+  #errorRate <- sum( (predictResult$net.result - testData[, col])^2 ) / nrow(testData)
+  absError <- sum( abs(predictResult$net.result - testData[, col]) ) / nrow(testData)
+  accuracy <- 1 - absError
 }
