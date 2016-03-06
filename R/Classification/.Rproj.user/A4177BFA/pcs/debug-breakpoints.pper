@@ -1,0 +1,36 @@
+{
+    "debugBreakpointsState" : {
+        "breakpoints" : [
+            {
+                "editor_line_number" : 20,
+                "editor_state" : 2,
+                "function_name" : "findAccuracy",
+                "function_steps" : "",
+                "id" : 2,
+                "is_package_breakpoint" : false,
+                "is_pending_debug_completion" : false,
+                "line_number" : 20,
+                "needs_updated_steps" : false,
+                "package_name" : "",
+                "path" : "~/360云盘/Documents/ML/R/Classification/neuralNet.R",
+                "state" : 2,
+                "type" : 0
+            },
+            {
+                "editor_line_number" : 8,
+                "editor_state" : 1,
+                "function_name" : "createModel",
+                "function_steps" : "3",
+                "id" : 4,
+                "is_package_breakpoint" : false,
+                "is_pending_debug_completion" : false,
+                "line_number" : 8,
+                "needs_updated_steps" : false,
+                "package_name" : "",
+                "path" : "~/360云盘/Documents/ML/R/Classification/decisionTree.R",
+                "state" : 1,
+                "type" : 0
+            }
+        ]
+    }
+}

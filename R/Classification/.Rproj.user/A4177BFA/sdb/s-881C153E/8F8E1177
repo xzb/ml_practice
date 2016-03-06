@@ -1,0 +1,17 @@
+{
+    "contents" : "library(neuralnet)\n\ncreateModel <- function (trainingData)\n{\n  col = ncol(trainingData)\n  n <- colnames(trainingData)\n  formula <- as.formula(paste(n[col], \"~\", paste(n[1 : col-1], collapse = \" + \")))    # last col as class\n  \n  model <- neuralnet(formula, data=trainingData, hidden = 4, linear.output = F)\n}\n\n\nfindAccuracy <- function (model, testData)\n{\n  col = ncol(testData)\n  \n  #predictResult <- predict(model, testData)\n  predictResult <- compute(model, testData[, 1 : col-1])\n  errorRate <- sum( (predictResult$net.result - testData[, col])^2 ) / nrow(testData)\n  \n  accuracy <- 1 - errorRate\n}",
+    "created" : 1457153221526.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3967865116",
+    "id" : "8F8E1177",
+    "lastKnownWriteTime" : 1457224585,
+    "path" : "~/360云盘/Documents/ML/R/Classification/neuralNet.R",
+    "project_path" : "neuralNet.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

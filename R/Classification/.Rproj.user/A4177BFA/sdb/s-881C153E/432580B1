@@ -1,0 +1,17 @@
+{
+    "contents" : "DataSets <- list(\n  # adult = read.table(file = \"data/adult/adult.data\", header = FALSE, sep = \",\"),\n  # wine = read.table(file = \"data/wine/wine.data\", header = FALSE, sep = \",\"),\n  car = read.table(file = \"data/car/car.data\", header = FALSE, sep = \",\"),\n  heart = read.table(file = \"data/heart-disease/processed.cleveland.data\", header = FALSE, sep = \",\"),\n  ads = read.table(file = \"data/internet_ads/ad.data\", header = FALSE, sep = \",\")\n  )\n\nAlgorithms <- list(\n  \"decisionTree.R\",\n  \"perceptron.R\",\n  \"neuralNet.R\"\n  #\"SVM.R\",\n  #\"naiveBayes.R\"\n  )\n\npreprocessData <- function()\n{\n  preprocessDataSets <- list()\n  for (index in 1 : length(DataSets))\n  {\n    data <- DataSets[[index]]\n    col = ncol(data)\n    newData <- 0\n    for (j in 1 : col)\n    {\n      if (is.factor(data[[j]]))\n      {\n        # print (\"is Factor\")\n        oneColumn <- as.numeric(data[[j]])\n      }\n      else\n      {\n        oneColumn <- data[j]\n      }\n      newData <- cbind(newData, oneColumn)\n    }\n    newData <- newData[, -1]\n    colnames(newData) <- colnames(data)\n    \n    \n    # normalize\n    maxs <- apply(newData, 2, max) \n    mins <- apply(newData, 2, min)\n    scaledData <- as.data.frame(scale(newData, center = mins, scale = maxs - mins))\n    \n    preprocessDataSets[[index]] <- scaledData\n  }\n  preprocessDataSets\n  \n  \n  # fix class variable to end column\n  \n}\n\nexec <- function()\n{\n  preprocessDataSets <- preprocessData()\n  \n  resultMatrix <- NULL\n  for (index in 1 : length(preprocessDataSets))\n  {\n    data <- preprocessDataSets[[index]]\n    sub <- sample(1 : nrow(data), round(0.8 * nrow(data)))\n    trainingData = data[sub, ]    # create training data\n    testData = data[-sub, ]       # create test data\n    \n    accuracyList <- NULL\n    for (algo in Algorithms)\n    {\n      remove(createModel)\n      remove(findAccuracy)\n      source(algo)\n      \n      model <- createModel(trainingData) \n      accuracy <- findAccuracy(model, testData) \n      accuracyList <- c(accuracyList, accuracy)\n    }\n    \n    accuracyList <- as.data.frame(accuracyList)\n    dimnames(accuracyList) <- list(unlist(Algorithms), names(DataSets[index]))\n    resultMatrix <- cbind(resultMatrix, accuracyList)\n  }\n  \n  resultMatrix\n}\n\nresultMatrix <- exec()",
+    "created" : 1457153398454.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1024166492",
+    "id" : "432580B1",
+    "lastKnownWriteTime" : 1457227837,
+    "path" : "~/360云盘/Documents/ML/R/Classification/Driver.R",
+    "project_path" : "Driver.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

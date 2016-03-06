@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1457225865812.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7EA47881",
+    "lastKnownWriteTime" : 4294967296,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "carPre",
+        "contentUrl" : "content?title=carPre&file=fdcb18e1a1b846089e4d6809a442e309.htm",
+        "displayedObservations" : 1000,
+        "displayedVariables" : 7,
+        "totalObservations" : 1728,
+        "variables" : 7
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1457225393592.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1B031E16",
+    "lastKnownWriteTime" : 7306916077306274048,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "resultMatrix",
+        "contentUrl" : "content?title=resultMatrix&file=badb0c8076eb459aae567aa5d54c464c.htm",
+        "displayedObservations" : "2",
+        "displayedVariables" : 2,
+        "totalObservations" : "2",
+        "variables" : "4"
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

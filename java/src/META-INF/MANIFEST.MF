@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: DecisionTree.DTDriver
+Class-Path: /Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/jre/lib/jfxrt.jar
